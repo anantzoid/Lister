@@ -1,14 +1,19 @@
-<a href="#/" ng-click="addLink()">Add a new link</a>
+<div class="add-new-link">
+    <a href="#/" ng-click="addLink()"><span class="glyphicon glyphicon-plus"></span> Add a new link</a>
+</div>
 
-<div ng-if="addNewSection">
+<div ng-show="addNewSection">
+    <input type="text" ng-model="newRecord.title" placeholder="Add a title...">
     <input type="text" ng-model="newRecord.link" placeholder="Add a link...">
     <button ng-click="saveLink()">Save</a>
     <!--add url and reqd validation-->
 </div>
 
-<ul>
-    <li ng-repeat="link in links">
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="link in Links">
         <a target="_blank" href="{{link.link}}">{{link.title}}</a>
+        <a  class="pull-right" href="#/" ng-show="edit" ng-click="editLink(link)"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a  class="pull-right"  href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
     </li>
 </ul>
 <!--
