@@ -8,8 +8,7 @@
  * Controller of the listerApp
  */
 angular.module('listerApp')
-  .controller('MainCtrl', function ($scope, $http, Links) {
-       
+  .controller('MainCtrl', function ($location, $scope, Links, fbRef, $route) {
        $scope.addNewSection = false; 
        $scope.edit = true;
        $scope.showEditSection = false;
@@ -54,4 +53,13 @@ angular.module('listerApp')
             $scope['showEditSection'+link.$id] = true;
         };
 
+        $scope.fbLogin = function() {
+            fbRef.authWithOAuthPopup("facebook", function(error, authData) {
+                if (error) {
+                    console.log("Login Failed!", error);
+                } else {
+                    console.log("Authenticated successfully with payload:", authData);
+                }
+            });
+        };
   });

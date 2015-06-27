@@ -8,11 +8,12 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
 .module('listerApp', [
         'ngRoute',
         'firebase'
         ])
+/*
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
@@ -27,8 +28,13 @@ angular
         redirectTo: '/'
     });
 })
+*/
 .value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
-.factory('Links', function(fbURL, $firebaseArray) {
+.factory('fbRef', function(fbURL) {
     var ref = new Firebase(fbURL);
-    return $firebaseArray(ref);
+    return ref;
+})
+.factory('Links', function(fbRef, $firebaseArray) {
+    return $firebaseArray(fbRef);
 });
+

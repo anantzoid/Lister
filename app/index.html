@@ -52,7 +52,46 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+        <div ng-controller="MainCtrl">
+
+            <div class="add-new-link">
+                <a href="#/" ng-click="addLink()"><span class="glyphicon glyphicon-plus"></span> Add a new link</a>
+            </div>
+
+            <div ng-show="addNewSection">
+                <input type="text" ng-model="newRecord.title" placeholder="Add a title...">
+                <input type="text" ng-model="newRecord.link" placeholder="Add a link...">
+                <button ng-click="saveLink()">Save</a>
+                <!--add url and reqd validation-->
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="link in Links" ng-init="hiddenDiv = false">
+                <div ng-hide="hiddenDiv">
+                    <a target="_blank" href="{{link.link}}">{{link.title}}</a>
+                    <div  class="pull-right">
+                        <a href="#/" ng-show="edit" ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </div>
+
+                <div class="" ng-show="hiddenDiv" >
+                    <input type="text" class="edit-link" ng-model="link.title" ng-model="newRecord.title">
+                    <div  class="pull-right">
+                        <a href="#/"  ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+
+                    <div>
+                        <input type="text" class="edit-link" ng-model="link.link" ng-model="newRecord.link">
+                    </div>
+                </div>
+                </li>
+            </ul>
+
+            <a href="#" ng-click="fbLogin()">Login with Facebook</a> 
+
+        </div>
     </div>
 
     <!--
