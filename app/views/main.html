@@ -10,10 +10,26 @@
 </div>
 
 <ul class="list-group">
-    <li class="list-group-item" ng-repeat="link in Links">
-        <a target="_blank" href="{{link.link}}">{{link.title}}</a>
-        <a  class="pull-right" href="#/" ng-show="edit" ng-click="editLink(link)"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a  class="pull-right"  href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+    <li class="list-group-item" ng-repeat="link in Links" ng-init="hiddenDiv = false">
+        <div ng-hide="hiddenDiv">
+            <a target="_blank" href="{{link.link}}">{{link.title}}</a>
+            <div  class="pull-right">
+                <a href="#/" ng-show="edit" ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+        </div>
+
+        <div class="" ng-show="hiddenDiv" >
+            <input type="text" class="edit-link" ng-model="link.title" ng-model="newRecord.title">
+            <div  class="pull-right">
+                <a href="#/"  ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-ok"></span></a>
+                <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+
+            <div>
+                <input type="text" class="edit-link" ng-model="link.link" ng-model="newRecord.link">
+            </div>
+        </div>
     </li>
 </ul>
 <!--

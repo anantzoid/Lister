@@ -11,41 +11,26 @@ angular.module('listerApp')
   .controller('MainCtrl', function ($scope, $http, Links) {
        
        $scope.addNewSection = false; 
-       $scope.edit = false;
+       $scope.edit = true;
+       $scope.showEditSection = false;
+       $scope.Links = Links;
+
        //TODO put in commonplace
        $scope.newRecord = {
            title: '',
            link: ''
        };
-       $scope.Links = Links;
 
-
-       $scope.links = [
-            {
-                title: 'Link1',
-                link: 'http://lnks.com'     
-            },
-            {
-                title: 'Link2',
-                link: 'http://lnks.com'     
-            }
-        ]; 
 
         $scope.addLink = function() {
             $scope.addNewSection = true;
         };
 
         $scope.saveLink = function() {
-
-
-               //TODO stautus validation
-                
-
             var save = $scope.Links.$add({
                 title: $scope.newRecord.title,
                 link: $scope.newRecord.link
             });        
-
 
             $scope.newRecord = {
                 title: '',
@@ -64,4 +49,9 @@ angular.module('listerApp')
         $scope.removeLink = function(link) {
             $scope.Links.$remove(link);
         };
+
+        $scope.editLink = function(link) {
+            $scope['showEditSection'+link.$id] = true;
+        };
+
   });

@@ -1,6 +1,23 @@
+a:hover {
+    text-decoration: none;
+}
+
+.glyphicon {
+    margin-left: 10px;
+}
+
 .add-new-link {
     margin-bottom:20px;
     font-size: 18px;
+}
+
+.edit-link {
+    border: none;
+    width: 80%;
+    margin-bottom: 10px;
+}
+.edit-link:focus {
+    outline: none;
 }
 
 .browsehappy {
