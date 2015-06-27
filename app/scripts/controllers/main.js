@@ -42,7 +42,7 @@ angular.module('listerApp')
             } else {
                 console.log('error');
             }
-
+            
         };
 
         $scope.removeLink = function(link) {
