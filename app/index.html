@@ -58,7 +58,7 @@
                 <a href="#/" ng-click="addLink()"><span class="glyphicon glyphicon-plus"></span> Add a new link</a>
             </div>
 
-            <div ng-show="addNewSection">
+            <div ng-show="addNewSection" class="ng-cloak">
                 <input type="text" ng-model="newRecord.title" placeholder="Add a title...">
                 <input type="text" ng-model="newRecord.link" placeholder="Add a link...">
                 <button ng-click="saveLink()">Save</a>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="" ng-show="hiddenDiv" >
+                <div class="ng-cloak" ng-show="hiddenDiv" >
                     <input type="text" class="edit-link" ng-model="link.title" ng-model="newRecord.title">
                     <div  class="pull-right">
                         <a href="#/"  ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-ok"></span></a>
@@ -89,7 +89,7 @@
                 </li>
             </ul>
 
-            <!--            <a href="#" ng-click="fbLogin()">Login with Facebook</a>  -->
+            <!-- <a href="#" ng-click="fbLogin()">Login with Facebook</a> --> 
 
         </div>
     </div>
@@ -118,14 +118,11 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!--
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    -->
-
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

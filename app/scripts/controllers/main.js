@@ -8,12 +8,13 @@
  * Controller of the listerApp
  */
 angular.module('listerApp')
-  .controller('MainCtrl', function ($location, $scope, Links, fbRef, $route) {
+  .controller('MainCtrl', function ($location, $scope, Links, User, $route) {
+        
        $scope.addNewSection = false; 
        $scope.edit = true;
        $scope.showEditSection = false;
        $scope.Links = Links;
-
+       
        //TODO put in commonplace
        $scope.newRecord = {
            title: '',
@@ -30,18 +31,21 @@ angular.module('listerApp')
                 title: $scope.newRecord.title,
                 link: $scope.newRecord.link
             });        
+            
+            if(!User.uid) {
+                console.log($scope.Links);
+                for(var link in $scope.Links){
+                    User.uid = link.$id;
+                } 
+                $route.reload();
+            }
 
             $scope.newRecord = {
                 title: '',
                 link: ''
             };
-
-            if(save) {
-                console.log('success');
-                $scope.addNewSection = false; 
-            } else {
-                console.log('error');
-            }
+            $scope.addNewSection = false; 
+            
             
         };
 
@@ -51,15 +55,5 @@ angular.module('listerApp')
 
         $scope.editLink = function(link) {
             $scope['showEditSection'+link.$id] = true;
-        };
-
-        $scope.fbLogin = function() {
-            fbRef.authWithOAuthPopup("facebook", function(error, authData) {
-                if (error) {
-                    console.log("Login Failed!", error);
-                } else {
-                    console.log("Authenticated successfully with payload:", authData);
-                }
-            });
         };
   });

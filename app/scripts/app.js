@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular
+angular
 .module('listerApp', [
         'ngRoute',
         'firebase'
@@ -30,11 +30,57 @@ var app = angular
 })
 */
 .value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
-.factory('fbRef', function(fbURL) {
-    var ref = new Firebase(fbURL);
+.factory('fbRef', function(fbURL, User) {
+    var ref = new Firebase(fbURL+User.uid);
     return ref;
 })
-.factory('Links', function(fbRef, $firebaseArray) {
-    return $firebaseArray(fbRef);
+/*
+.factory('fbAuth', function(authType, fbRef, $q) {
+    var defer = $q.defer(); 
+    var auth =  {
+        login: function(authType) {
+            switch(authType) {
+                case 'anon':
+                    fbRef.authAnonymously().then(function(auth) {
+                        defer.resolve(auth);
+                    });
+                    return defer.promise;
+            }
+        }
+    };
+    return auth;
+
+/*    
+    var auth = {};
+    auth.login = function() {
+        fbRef.authWithOAuthPopup("facebook", function(error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+                return false;
+            } else {
+                return authData;
+            }
+        });
+    }
+    return auth;
+    
+})
+*/
+.factory('Links', function(fbRef, $firebaseArray, $q) {
+ return $firebaseArray(fbRef);
+/* 
+           fbAuth.login().then(function(auth) {
+            var links = $firebaseArray(fbRef);
+            defer.resolve(links);
+           });
+    return defer.promise;
+*/
+})
+.factory('User', function() {
+    var user = {};
+    user.authType = 'anon';
+    user.uid = '';
+
+    return user;
 });
 
