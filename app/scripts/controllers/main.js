@@ -14,7 +14,10 @@ angular.module('listerApp')
        $scope.edit = true;
        $scope.showEditSection = false;
        $scope.Links = Links;
-       
+
+       if(!$scope.Links.length && localStorage.getItem('listerData')) {
+            $scope.Links = JSON.parse(localStorage.getItem('listerData'));
+       }
        //TODO put in commonplace
        $scope.newRecord = {
            title: '',
@@ -30,23 +33,18 @@ angular.module('listerApp')
             var save = $scope.Links.$add({
                 title: $scope.newRecord.title,
                 link: $scope.newRecord.link
-            });        
-            
-            if(!User.uid) {
-                console.log($scope.Links);
-                for(var link in $scope.Links){
-                    User.uid = link.$id;
-                } 
-                $route.reload();
-            }
+            }).then(function() {
+                if(User.authType == 'anon') {
+                    localStorage.setItem('listerData', JSON.stringify($scope.Links));
+                }
 
-            $scope.newRecord = {
-                title: '',
-                link: ''
-            };
-            $scope.addNewSection = false; 
-            
-            
+                $scope.newRecord = {
+                    title: '',
+                    link: ''
+                };
+                $scope.addNewSection = false; 
+    
+            });        
         };
 
         $scope.removeLink = function(link) {

@@ -10,7 +10,7 @@
 </div>
 
 <ul class="list-group">
-    <li class="list-group-item" ng-repeat="link in Links" ng-init="hiddenDiv = false">
+    <li class="list-group-item" ng-repeat="link in Links" ng-show="link.hasOwnProperty('title')"  ng-init="hiddenDiv = false">
         <div ng-hide="hiddenDiv">
             <a target="_blank" href="{{link.link}}">{{link.title}}</a>
             <div  class="pull-right">
