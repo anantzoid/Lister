@@ -29,7 +29,8 @@ var app = angular
     });
 })
 */
-.value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
+//Include your firebase app URL here
+.value('fbURL', 'https://burning-fire-XXX.firebaseio.com/')
 .factory('fbRef', function(fbURL) {
     var ref = new Firebase(fbURL);
     return ref;
