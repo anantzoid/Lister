@@ -29,9 +29,13 @@ angular
     });
 })
 */
+.value('uid', function() {
+    return generatePushID();
+})
+//Include your firebase app URL here
 .value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
-.factory('fbRef', function(fbURL, User) {
-    var ref = new Firebase(fbURL+User.uid);
+.factory('fbRef', function(uid, fbURL) {
+    var ref = new Firebase(fbURL+uid());
     return ref;
 })
 /*
