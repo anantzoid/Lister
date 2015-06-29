@@ -8,16 +8,24 @@
  * Controller of the listerApp
  */
 angular.module('listerApp')
-  .controller('MainCtrl', function ($location, $scope, Links, User, $route) {
-        
+  .controller('MainCtrl', function ($location, $scope, Links, User, fbAuth, $route) {
+
        $scope.addNewSection = false; 
        $scope.edit = true;
        $scope.showEditSection = false;
-       $scope.Links = Links;
-
-       if(!$scope.Links.length && localStorage.getItem('listerData')) {
-            $scope.Links = JSON.parse(localStorage.getItem('listerData'));
+       $scope.Links = Links.getLinks(User.uid);
+console.log($scope.Links);
+       if(!$scope.Links.length && localStorage.getItem('u')) {
+            var temp =JSON.parse(localStorage.getItem('u'));
+            for(var t in temp) {
+                $scope.Links.$add({
+                    title: temp[t].title,
+                    link: temp[t].link
+                }
+                );
+            }
        }
+console.log($scope.Links);
        //TODO put in commonplace
        $scope.newRecord = {
            title: '',
@@ -34,24 +42,36 @@ angular.module('listerApp')
                 title: $scope.newRecord.title,
                 link: $scope.newRecord.link
             }).then(function() {
-                if(User.authType == 'anon') {
-                    localStorage.setItem('listerData', JSON.stringify($scope.Links));
-                }
+                localStorage.setItem('u', JSON.stringify($scope.Links));
+           });        
 
-                $scope.newRecord = {
-                    title: '',
-                    link: ''
-                };
-                $scope.addNewSection = false; 
-    
-            });        
+            $scope.newRecord = {
+                title: '',
+                link: ''
+            };
+            $scope.addNewSection = false; 
+
         };
 
         $scope.removeLink = function(link) {
-            $scope.Links.$remove(link);
+            $scope.Links.$remove(link)
+                .then(function() {
+                    localStorage.setItem('u', JSON.stringify($scope.Links));
+                });
         };
 
-        $scope.editLink = function(link) {
-            $scope['showEditSection'+link.$id] = true;
+        $scope.editLink = function() {
+            localStorage.setItem('u', JSON.stringify($scope.Links));
+        };
+
+        $scope.fbLogin = function() {
+           fbAuth.login().then(function(data) {
+                console.log(data);
+                User.authType = 'facebook';
+                User.uid = data.uid;  
+                $route.reload();
+           }, function(error) {
+               console.log(error);
+           });
         };
   });

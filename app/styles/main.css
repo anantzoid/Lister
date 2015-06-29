@@ -6,9 +6,15 @@ a:hover {
     margin-left: 10px;
 }
 
+
 .add-new-link {
     margin-bottom:20px;
     font-size: 18px;
+}
+
+.new-link-section {
+    margin-bottom: 20px;
+    padding: 10px;
 }
 
 .edit-link {

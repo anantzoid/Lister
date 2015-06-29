@@ -13,7 +13,7 @@ angular
         'ngRoute',
         'firebase'
         ])
-/*
+
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
@@ -28,54 +28,39 @@ angular
         redirectTo: '/'
     });
 })
-*/
+
 //Include your firebase app URL here
 .value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
 .factory('fbRef', function(User, fbURL) {
     var ref = new Firebase(fbURL+User.uid);
     return ref;
 })
-/*
-.factory('fbAuth', function(authType, fbRef, $q) {
-    var defer = $q.defer(); 
-    var auth =  {
-        login: function(authType) {
-            switch(authType) {
-                case 'anon':
-                    fbRef.authAnonymously().then(function(auth) {
-                        defer.resolve(auth);
-                    });
-                    return defer.promise;
-            }
-        }
-    };
-    return auth;
+.factory('fbAuth', function(fbRef, $q) {
 
-/*    
     var auth = {};
     auth.login = function() {
+        var deferred = $q.defer();
         fbRef.authWithOAuthPopup("facebook", function(error, authData) {
             if (error) {
-                console.log("Login Failed!", error);
-                return false;
+                deferred.reject(error);
             } else {
-                return authData;
+                deferred.resolve(authData);
             }
         });
+        return deferred.promise;
     }
     return auth;
     
 })
-*/
-.factory('Links', function(fbRef, $firebaseArray, $q) {
- return $firebaseArray(fbRef);
-/* 
-           fbAuth.login().then(function(auth) {
-            var links = $firebaseArray(fbRef);
-            defer.resolve(links);
-           });
-    return defer.promise;
-*/
+.factory('Links', function($firebaseArray, fbURL) {
+    var links = {
+        getLinks: function(uid) {
+                      console.log(uid);
+            var ref = new Firebase(fbURL+uid);
+            return $firebaseArray(ref);
+        }
+    };
+    return links;
 })
 .factory('User', function() {
     var user = {};
