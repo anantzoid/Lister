@@ -3,13 +3,8 @@ a:hover {
     text-decoration: none;
 }
 
-.header {
-    height: 60px;
-    border: none !important;
-}
-
 .app-title {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #337ab7;
 }
 
@@ -20,8 +15,6 @@ a:hover {
 .login-msg {
     color: #9a9a9a;
     margin-bottom: 20px;
-    margin-left: 5px;
-
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 22px;
@@ -73,6 +66,10 @@ a:hover {
 }
 .edit-link:focus {
     outline: none;
+}
+
+.edit-controls {
+    margin-top: 20px;
 }
 
 .save-icon {

@@ -43,14 +43,14 @@
     </div>
 
     <div class="ng-cloak" ng-show="hiddenDiv" >
-        <input type="text" class="edit-link" ng-model="link.title" ng-model="newRecord.title">
-        <div  class="pull-right">
+        <input type="text" class="form-control edit-link" ng-model="link.title" ng-model="newRecord.title">
+        <div  class="pull-right edit-controls">
             <a href="#/"  ng-click="hiddenDiv =! hiddenDiv;editLink(link)"><span class="glyphicon glyphicon-ok"></span></a>
             <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
 
         <div>
-            <input type="text" class="edit-link" ng-model="link.link" ng-model="newRecord.link">
+            <input type="text" class="form-control edit-link" ng-model="link.link" ng-model="newRecord.link">
         </div>
     </div>
     </li>
