@@ -3,6 +3,11 @@ a:hover {
     text-decoration: none;
 }
 
+.header {
+    height: 60px;
+    border: none !important;
+}
+
 .app-title {
     margin-bottom: 20px;
     color: #337ab7;
@@ -24,12 +29,18 @@ a:hover {
 
 .login-container {
     padding: 100px 0;
-    border-right: 1px solid #f5f5f5;
+    border-right: 1px solid #ddd;
 }
 
 .logged-in {
     color: #337ab7;
 }
+
+.error {
+    border-color: #e9322d;
+    box-shadow: 0 0 6px #f8b9b7;
+}
+
 
 .username {
     font-size: 20px;

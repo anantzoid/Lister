@@ -11,7 +11,7 @@
 angular
 .module('listerApp', [
         'ngRoute',
-        'firebase'
+        'firebase',
         ])
 
 .config(function ($routeProvider) {
@@ -30,7 +30,7 @@ angular
 })
 
 //Include your firebase app URL here
-.value('fbURL', 'https://burning-fire-3132.firebaseio.com/')
+.value('fbURL', config.fbURL)
 .factory('fbRef', function(User, fbURL) {
     var ref = new Firebase(fbURL+User.uid);
     return ref;

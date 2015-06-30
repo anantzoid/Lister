@@ -26,8 +26,10 @@ angular.module('listerApp')
                 }
                 );
             }
-            
-            localStorage.removeItem('listerData');
+           
+           if(User.authType !== 'anon') { 
+                localStorage.removeItem('listerData');
+           }
        }
 
        //TODO put in commonplace
@@ -68,8 +70,11 @@ angular.module('listerApp')
                 });
         };
 
-        $scope.editLink = function() {
-            localStorage.setItem('listerData', JSON.stringify($scope.Links));
+        $scope.editLink = function(link) {
+            $scope.Links.$save(link);
+            if(User.authType == 'anon') {
+                localStorage.setItem('listerData', JSON.stringify($scope.Links));
+            }
         };
 
         $scope.fbLogin = function(service) {
