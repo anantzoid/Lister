@@ -16,7 +16,6 @@ angular.module('listerApp')
        $scope.Links = Links.getLinks(User.uid);
        $scope.User = User;
 
-       console.log(User.authType);
        if(!$scope.Links.length && localStorage.getItem('listerData')) {
             var temp = JSON.parse(localStorage.getItem('listerData'));
             //TODO save all at once
@@ -74,11 +73,9 @@ angular.module('listerApp')
 
         $scope.fbLogin = function(service) {
            fbAuth.login(service).then(function(data) {
-                console.log(data);
                 User.authType = service;
                 User.uid = data.uid;  
-                User.uname = data.service;
-                console.log(User);
+                User.uname = data[service];
                 $route.reload();
            }, function(error) {
                console.log(error);

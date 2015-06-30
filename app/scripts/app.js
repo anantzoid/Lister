@@ -55,7 +55,6 @@ angular
 .factory('Links', function($firebaseArray, fbURL) {
     var links = {
         getLinks: function(uid) {
-            console.log(uid);
             var ref = new Firebase(fbURL+uid);
             return $firebaseArray(ref);
         }
