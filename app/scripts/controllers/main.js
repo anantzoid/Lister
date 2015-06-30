@@ -16,7 +16,7 @@ angular.module('listerApp')
        $scope.Links = Links.getLinks(User.uid);
        $scope.User = User;
 
-       if(!$scope.Links.length && localStorage.getItem('listerData')) {
+       if(localStorage.getItem('listerData')) {
             var temp = JSON.parse(localStorage.getItem('listerData'));
             //TODO save all at once
             for(var t in temp) {
@@ -26,6 +26,7 @@ angular.module('listerApp')
                 }
                 );
             }
+            
             localStorage.removeItem('listerData');
        }
 
