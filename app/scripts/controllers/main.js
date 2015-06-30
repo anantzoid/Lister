@@ -14,9 +14,12 @@ angular.module('listerApp')
        $scope.edit = true;
        $scope.showEditSection = false;
        $scope.Links = Links.getLinks(User.uid);
-console.log($scope.Links);
-       if(!$scope.Links.length && localStorage.getItem('u')) {
-            var temp =JSON.parse(localStorage.getItem('u'));
+       $scope.User = User;
+
+       console.log(User.authType);
+       if(!$scope.Links.length && localStorage.getItem('listerData')) {
+            var temp = JSON.parse(localStorage.getItem('listerData'));
+            //TODO save all at once
             for(var t in temp) {
                 $scope.Links.$add({
                     title: temp[t].title,
@@ -24,8 +27,9 @@ console.log($scope.Links);
                 }
                 );
             }
+            localStorage.removeItem('listerData');
        }
-console.log($scope.Links);
+
        //TODO put in commonplace
        $scope.newRecord = {
            title: '',
@@ -34,7 +38,7 @@ console.log($scope.Links);
 
 
         $scope.addLink = function() {
-            $scope.addNewSection = true;
+            $scope.addNewSection = !$scope.addNewSection;
         };
 
         $scope.saveLink = function() {
@@ -42,7 +46,9 @@ console.log($scope.Links);
                 title: $scope.newRecord.title,
                 link: $scope.newRecord.link
             }).then(function() {
-                localStorage.setItem('u', JSON.stringify($scope.Links));
+                if(User.authType == 'anon') {
+                    localStorage.setItem('listerData', JSON.stringify($scope.Links));
+                }
            });        
 
             $scope.newRecord = {
@@ -56,22 +62,27 @@ console.log($scope.Links);
         $scope.removeLink = function(link) {
             $scope.Links.$remove(link)
                 .then(function() {
-                    localStorage.setItem('u', JSON.stringify($scope.Links));
+                    if(User.authType == 'anon') {
+                        localStorage.setItem('listerData', JSON.stringify($scope.Links));
+                    }
                 });
         };
 
         $scope.editLink = function() {
-            localStorage.setItem('u', JSON.stringify($scope.Links));
+            localStorage.setItem('listerData', JSON.stringify($scope.Links));
         };
 
-        $scope.fbLogin = function() {
-           fbAuth.login().then(function(data) {
+        $scope.fbLogin = function(service) {
+           fbAuth.login(service).then(function(data) {
                 console.log(data);
-                User.authType = 'facebook';
+                User.authType = service;
                 User.uid = data.uid;  
+                User.uname = data.service;
+                console.log(User);
                 $route.reload();
            }, function(error) {
                console.log(error);
+                $route.reload();
            });
         };
   });

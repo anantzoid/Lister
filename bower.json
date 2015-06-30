@@ -8,7 +8,8 @@
     "angular-resource": "^1.3.0",
     "angular-route": "^1.3.0",
     "firebase": "^2.2.0",
-    "angularfire": "^1.1.2"
+    "angularfire": "^1.1.2",
+    "font-awesome": "~4.3.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
@@ -16,17 +17,17 @@
   "appPath": "app",
   "moduleName": "listerApp",
   "overrides": {
-      "bootstrap": {
-          "main": [
-              "less/bootstrap.less",
-          "dist/css/bootstrap.css",
-          "dist/css/bootstrap-theme.css",
-          "dist/js/bootstrap.js",
-          "dist/fonts/glyphicons-halflings-regular.eot",
-          "dist/fonts/glyphicons-halflings-regular.svg",
-          "dist/fonts/glyphicons-halflings-regular.ttf",
-          "dist/fonts/glyphicons-halflings-regular.woff"
-              ]
-      }
-  } 
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap-theme.css",
+        "dist/js/bootstrap.js",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff"
+      ]
+    }
+  }
 }

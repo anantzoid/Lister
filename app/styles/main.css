@@ -7,6 +7,15 @@ a:hover {
 }
 
 
+.social-Login {
+    padding: 10px 20px;
+}
+
+.login-container {
+    padding: 100px 0;
+    border-right: 1px solid #f5f5f5;
+}
+
 .add-new-link {
     margin-bottom:20px;
     font-size: 18px;
@@ -15,6 +24,11 @@ a:hover {
 .new-link-section {
     margin-bottom: 20px;
     padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.form-group {
+    width: 50%;
 }
 
 .edit-link {

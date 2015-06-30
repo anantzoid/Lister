@@ -38,9 +38,9 @@ angular
 .factory('fbAuth', function(fbRef, $q) {
 
     var auth = {};
-    auth.login = function() {
+    auth.login = function(service) {
         var deferred = $q.defer();
-        fbRef.authWithOAuthPopup("facebook", function(error, authData) {
+        fbRef.authWithOAuthPopup(service, function(error, authData) {
             if (error) {
                 deferred.reject(error);
             } else {
@@ -55,7 +55,7 @@ angular
 .factory('Links', function($firebaseArray, fbURL) {
     var links = {
         getLinks: function(uid) {
-                      console.log(uid);
+            console.log(uid);
             var ref = new Firebase(fbURL+uid);
             return $firebaseArray(ref);
         }
