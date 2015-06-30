@@ -8,11 +8,12 @@
  * Controller of the listerApp
  */
 angular.module('listerApp')
-  .controller('MainCtrl', function ($location, $scope, Links, User, fbAuth, $route) {
+  .controller('MainCtrl', function ($location, $scope, Links, User, fbAuth, $route, $timeout) {
 
        $scope.addNewSection = false; 
        $scope.edit = true;
        $scope.showEditSection = false;
+       $scope.showSaveMessage = false;
        $scope.Links = Links.getLinks(User.uid);
        $scope.User = User;
 
@@ -29,7 +30,15 @@ angular.module('listerApp')
            
            if(User.authType !== 'anon') { 
                 localStorage.removeItem('listerData');
+
+                // show "Data being saved" message for a time interval
+                $scope.showSaveMessage= true;
+                $timeout(function() {
+                    $scope.showSaveMessage= false;
+                },2000);
+
            }
+
        }
 
        //TODO put in commonplace

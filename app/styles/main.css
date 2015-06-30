@@ -21,6 +21,10 @@ a:hover {
     color: #9a9a9a;
     margin-bottom: 20px;
     margin-left: 5px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 22px;
 }
 
 .social-login {
@@ -28,7 +32,7 @@ a:hover {
 }
 
 .login-container {
-    padding: 100px 0;
+    padding: 40px 0px 150px 0;;
     border-right: 1px solid #ddd;
 }
 
@@ -69,6 +73,29 @@ a:hover {
 }
 .edit-link:focus {
     outline: none;
+}
+
+.save-icon {
+    font-size: 30px;
+    margin-right: 8px;
+}
+
+.save-msg {
+    float: right;
+    margin-top: 5px;
+}
+
+.save-msg-container {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    padding: 25px 35px;
+    background-color: #f4f4f4;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 8px solid #9a9a9a;
+    opacity: 0.6;
+    font-size: 18px;
 }
 
 .browsehappy {
