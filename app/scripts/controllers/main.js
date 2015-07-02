@@ -8,13 +8,22 @@
  * Controller of the listerApp
  */
 angular.module('listerApp')
-  .controller('MainCtrl', function ($location, $scope, Links, User, fbAuth, $route, $timeout) {
+  .controller('MainCtrl', function ($location,
+              $scope, 
+              Links, 
+              User, 
+              fbAuth, 
+              $route,
+              $timeout,
+              $rootScope) {
+
 
        $scope.addNewSection = false; 
        $scope.edit = true;
        $scope.showEditSection = false;
        $scope.showSaveMessage = false;
-       $scope.Links = Links.getLinks(User.uid);
+       var uid = typeof($rootScope.uid) !== "undefined" ?  $rootScope.uid : User.uid
+       $scope.Links = Links.getLinks(uid);
        $scope.User = User;
 
        if(localStorage.getItem('listerData')) {
@@ -96,5 +105,11 @@ angular.module('listerApp')
                console.log(error);
                 $route.reload();
            });
+        };
+
+        $scope.shareList = function() {
+            if(User.authType == 'anon') {
+            } else {
+            }
         };
   });

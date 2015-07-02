@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
 .module('listerApp', [
         'ngRoute',
         'firebase',
@@ -19,6 +19,10 @@ angular
     .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+    })
+    .when('/:id', {
+        template: 'Loading Lists',
+        controller: 'SharedListCtrl'
     })
     .when('/about', {
         templateUrl: 'views/about.html',

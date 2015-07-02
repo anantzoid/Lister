@@ -95,6 +95,12 @@ a:hover {
     font-size: 18px;
 }
 
+.share-list {
+    float: right;
+    font-weight: 600;
+     
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
