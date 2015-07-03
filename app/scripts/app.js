@@ -11,7 +11,8 @@
 var app = angular
 .module('listerApp', [
         'ngRoute',
-        'firebase'
+        'firebase',
+        '720kb.socialshare'
         ])
 
 .config(function ($routeProvider) {
@@ -32,7 +33,15 @@ var app = angular
         redirectTo: '/'
     });
 })
-
+/*
+.config(function($locationProvider){
+    $locationProvider.html5Mode(
+        { 
+            enabled: true,
+            requireBase: false
+        }).hashPrefix('!');
+})
+*/
 //Include your firebase app URL here
 .value('fbURL', config.fbURL)
 .factory('fbRef', function(User, fbURL) {

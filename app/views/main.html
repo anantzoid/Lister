@@ -55,17 +55,44 @@
     </div>
     </li>
 </ul>
-<div ng-show="Links.length" ng-init="shareOpts = false">
+<div ng-show="!Links.length" ng-init="shareOpts = false">
     <div  class="share-list">
         <a href="#/" ng-click="shareOpts = !shareOpts;shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
     </div>
+    <div ng-show="shareOpts" class="share-section clear">
+        <input type="text" class="form-control" ng-value="location.absUrl() + uid">
+        <div class="social-share-options">
+            <div class="social-share-option">
+                <a><span class="fa fa-files-o"></span> Copy</a>
+            </div>
+
+            <div class="social-share-option">
+                <a href="#"
+                    socialshare
+                    socialshare-provider="facebook"
+                    socialshare-text="Checkout my list on Lister"
+                    socialshare-url="{{ location.absUrl() + uid }}">
+                    <span class="fa fa-facebook"></span> Facebook
+                </a>
+            </div>
+
+            <div class="social-share-option">
+                <a href="#"
+                    socialshare
+                    socialshare-provider="twitter"
+                    socialshare-text="Checkout my list on Lister"
+                    socialshare-url="{{ location.absUrl() + uid }}">
+                    <span class="fa fa-twitter"></span> Twitter
+                </a>
+            </div>
+            <div class="clear"></div>
+        </div>     
+ 
     <!--
-    <div ng-show="shareOpts">
-        <input type="text" ng-value="location.absUrl() +uid">
         <div fb-like></div>
         <div facebook data-name='Fb Share' data-url='http://google.com' data-picture-url='http://plnk.co/img/plunker.png' data-caption='Testing Facebook Shae' data-shares='shares'> <a href>Share To facebook<a> <p>Number of Shares: {{shares}}</p> </div> 
-            </div>
             -->
+            </div>
 </div>
 <div class="save-msg-container" ng-show="showSaveMessage">
     <span class="glyphicon glyphicon-ok save-icon"></span>
