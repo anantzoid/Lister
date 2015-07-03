@@ -11,7 +11,7 @@
 var app = angular
 .module('listerApp', [
         'ngRoute',
-        'firebase',
+        'firebase'
         ])
 
 .config(function ($routeProvider) {

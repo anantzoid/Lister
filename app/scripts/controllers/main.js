@@ -22,8 +22,11 @@ angular.module('listerApp')
        $scope.edit = true;
        $scope.showEditSection = false;
        $scope.showSaveMessage = false;
-       var uid = typeof($rootScope.uid) !== "undefined" ?  $rootScope.uid : User.uid
-       $scope.Links = Links.getLinks(uid);
+       $scope.location = $location;
+
+       $scope.uid = typeof($rootScope.uid) !== "undefined" ?  $rootScope.uid : User.uid;
+       //TODO switch to manuallly generated uid if $rootScope.uid does not contain any data
+       $scope.Links = Links.getLinks($scope.uid);
        $scope.User = User;
 
        if(localStorage.getItem('listerData')) {
@@ -100,6 +103,7 @@ angular.module('listerApp')
                 User.authType = service;
                 User.uid = data.uid;  
                 User.uname = data[service];
+                delete $rootScope.uid;
                 $route.reload();
            }, function(error) {
                console.log(error);
@@ -110,6 +114,18 @@ angular.module('listerApp')
         $scope.shareList = function() {
             if(User.authType == 'anon') {
             } else {
+                $scope.uid = generatePushID(); 
+                var shareLinks = Links.getLinks($scope.uid);
+                             
+                for(var t in $scope.Links) {
+                    var data = $scope.Links[t];
+                    if(data.hasOwnProperty('title')) {
+                        shareLinks.$add({
+                            title: data.title,
+                            link: data.link
+                        });
+                    }
+                }
             }
         };
   });

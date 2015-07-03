@@ -55,9 +55,17 @@
     </div>
     </li>
 </ul>
-<div ng-show="Links.length" class="share-list">
-    <a href="#" ng-click="shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
-</div>
+<div ng-show="Links.length" ng-init="shareOpts = false">
+    <div  class="share-list">
+        <a href="#/" ng-click="shareOpts = !shareOpts;shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
+    </div>
+    <!--
+    <div ng-show="shareOpts">
+        <input type="text" ng-value="location.absUrl() +uid">
+        <div fb-like></div>
+        <div facebook data-name='Fb Share' data-url='http://google.com' data-picture-url='http://plnk.co/img/plunker.png' data-caption='Testing Facebook Shae' data-shares='shares'> <a href>Share To facebook<a> <p>Number of Shares: {{shares}}</p> </div> 
+            </div>
+            -->
 </div>
 <div class="save-msg-container" ng-show="showSaveMessage">
     <span class="glyphicon glyphicon-ok save-icon"></span>
