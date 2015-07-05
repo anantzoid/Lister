@@ -12,7 +12,7 @@
 
 <div class="col-xs-9 col-md-9">
 <div class="add-new-link">
-    <a href="#/" ng-click="addLink()"><span class="glyphicon glyphicon-plus"></span> Add a new link</a>
+    <a href="/" ng-click="addLink()"><span class="glyphicon glyphicon-plus"></span> Add a new link</a>
 </div>
 
 <form name="newLinkForm">
@@ -37,16 +37,16 @@
     <div ng-hide="hiddenDiv">
         <a target="_blank" href="{{link.link}}">{{link.title}}</a>
         <div  class="pull-right">
-            <a href="#/" ng-show="edit" ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+            <a href="/" ng-show="edit" ng-click="hiddenDiv =! hiddenDiv"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
     </div>
 
     <div class="ng-cloak" ng-show="hiddenDiv" >
         <input type="text" class="form-control edit-link" ng-model="link.title" ng-model="newRecord.title">
         <div  class="pull-right edit-controls">
-            <a href="#/"  ng-click="hiddenDiv =! hiddenDiv;editLink(link)"><span class="glyphicon glyphicon-ok"></span></a>
-            <a href="#/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
+            <a href="/"  ng-click="hiddenDiv =! hiddenDiv;editLink(link)"><span class="glyphicon glyphicon-ok"></span></a>
+            <a href="/" ng-click="removeLink(link)"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
 
         <div>
@@ -55,16 +55,13 @@
     </div>
     </li>
 </ul>
-<div ng-show="!Links.length" ng-init="shareOpts = false">
+<div ng-show="Links.length" ng-init="shareOpts = false">
     <div  class="share-list">
-        <a href="#/" ng-click="shareOpts = !shareOpts;shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
+        <a href="/" ng-click="shareOpts = !shareOpts;shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
     </div>
     <div ng-show="shareOpts" class="share-section clear">
         <input type="text" class="form-control" ng-value="location.absUrl() + uid">
         <div class="social-share-options">
-            <div class="social-share-option">
-                <a><span class="fa fa-files-o"></span> Copy</a>
-            </div>
 
             <div class="social-share-option">
                 <a href="#"

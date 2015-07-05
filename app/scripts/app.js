@@ -15,7 +15,7 @@ var app = angular
         '720kb.socialshare'
         ])
 
-.config(function ($routeProvider) {
+.config(function ($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'views/main.html',
@@ -31,6 +31,11 @@ var app = angular
     })
     .otherwise({
         redirectTo: '/'
+    });
+
+    $locationProvider.html5Mode({
+        enabled:true,
+        requireBase: false
     });
 })
 /*
