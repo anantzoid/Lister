@@ -1,0 +1,4 @@
+var config = {
+    fbURL:  'https://XXXX.firebaseio.com/',
+    facebookAppId: ''
+};
