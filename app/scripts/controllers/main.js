@@ -62,6 +62,7 @@ angular.module('listerApp')
 
         $scope.addLink = function() {
             $scope.addNewSection = !$scope.addNewSection;
+            $scope.newLinkForm.$setPristine();
         };
 
         $scope.saveLink = function() {
