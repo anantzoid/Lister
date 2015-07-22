@@ -1,12 +1,16 @@
 # Lister
+
 This project was an initiative to get my hands dirty with AngularJS, Yeoman, Firebase while I was sitting around with a fractured elbow.
 
-You can add items to create a reading list (locally, or save them by logging in ) and share,publish them (this is still left to do).
+Currently it supports the following functionalities:
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+* Make lists (todo/reading/or whatever list) and store them. 
+* Log in to save the lists and access from anywhere.
+* Share a copy of your list with anyone.
+* Save a shared list to your account.
 
-## Install Dependencies
+
+## Install Instructions
 
 `cd` into the cloned directory and run:
 
