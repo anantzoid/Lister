@@ -60,7 +60,7 @@
         <a href="/" ng-click="shareOpts = !shareOpts;shareList()"><span class="glyphicon glyphicon-share"></span> Share</a>
     </div>
     <div ng-show="shareOpts" class="share-section clear">
-        <input type="text" class="form-control" ng-value="location.absUrl() + uid">
+        <input type="text" class="form-control" ng-value="location.absUrl() +'#/'+ uid">
         <div class="social-share-options">
 
             <div class="social-share-option">
@@ -68,7 +68,7 @@
                     socialshare
                     socialshare-provider="facebook"
                     socialshare-text="Checkout my list on Lister"
-                    socialshare-url="{{ location.absUrl() + uid }}">
+                    socialshare-url="{{ location.absUrl() +'#/'+ uid }}">
                     <span class="fa fa-facebook"></span> Facebook
                 </a>
             </div>
@@ -78,7 +78,7 @@
                     socialshare
                     socialshare-provider="twitter"
                     socialshare-text="Checkout my list on Lister"
-                    socialshare-url="{{ location.absUrl() + uid }}">
+                    socialshare-url="{{ location.absUrl() +'#/'+ uid }}">
                     <span class="fa fa-twitter"></span> Twitter
                 </a>
             </div>
